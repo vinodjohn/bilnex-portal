@@ -1,0 +1,84 @@
+@use '@angular/material' as mat;
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;600&display=swap');
+
+$light-green: #A8F367;
+$dark-green: #264308;
+$gray-light: #F1F1F1;
+$gray-dark: #A8A8A8;
+
+$primary: mat.m2-define-palette(mat.$green-palette, 500, 300, 700);
+$accent: mat.m2-define-palette(mat.$blue-palette, 500, 300, 700);
+$warn: mat.m2-define-palette(mat.$red-palette, 500, 300, 700);
+
+$grey-palette: mat.m2-define-palette((
+  50: $gray-light,
+  100: $gray-dark,
+  200: darken($gray-light, 10%),
+  300: darken($gray-light, 20%),
+  400: darken($gray-light, 30%),
+  500: darken($gray-dark, 10%),
+  600: darken($gray-dark, 20%),
+  700: darken($gray-dark, 30%),
+  800: darken($gray-dark, 40%),
+  900: darken($gray-dark, 50%),
+), 500, 300, 700);
+
+$theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    background: $grey-palette,
+  ),
+));
+
+html {
+  @include mat.all-component-themes($theme);
+}
+
+body {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+}
+
+.mat-button.mat-primary {
+  background-color: $light-green;
+  color: $dark-green;
+
+  &:hover {
+    background-color: darken($light-green, 10%);
+  }
+}
+
+.mat-button.mat-accent {
+  background-color: $gray-light;
+  color: $dark-green;
+
+  &:hover {
+    background-color: darken($gray-light, 10%);
+  }
+}
+
+.mat-button.mat-warn {
+  background-color: $warn;
+  color: white;
+
+  &:hover {
+    background-color: darken($warn, 10%);
+  }
+}
+
+.mat-raised-button {
+  @include mat.button-typography();
+  border-radius: 4px;
+}
+
+.mat-flat-button.mat-accent {
+  background-color: $gray-dark;
+  color: white;
+
+  &:hover {
+    background-color: darken($gray-dark, 10%);
+  }
+}
