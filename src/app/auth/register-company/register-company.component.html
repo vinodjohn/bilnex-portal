@@ -2,13 +2,15 @@
   <div class="scroll-wrapper">
     <h2 class="title"><span>{{ 'REGISTER_COMPANY_TITLE' | translate }}</span></h2>
     <div class="user-confirmation">
-      <span><span>{{ 'REGISTER_COMPANY_CONFIRMATION' | translate }}</span><span
-        class="user-confirmation-email">{{ email }}</span></span>
+      <span class="user-confirmation-text">
+        {{ (isGoogleUser ? 'REGISTER_COMPANY_CONFIRMATION_GOOGLE' : 'REGISTER_COMPANY_CONFIRMATION') | translate }}
+      </span>
+      <span class="user-confirmation-email">{{ email }}</span>
       <button class="change-btn"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
     </div>
 
     <div class="company-header">
-      <h3 class="section-title">{{ 'REGISTER_COMPANY_DETAILS' | translate }}</h3>
+      <h3 class="section-title-header">{{ 'REGISTER_COMPANY_DETAILS' | translate }}</h3>
       <div class="line"></div>
     </div>
 
@@ -17,14 +19,14 @@
         <mat-select formControlName="companyCountry">
           <mat-select-trigger>
             <img [src]="getSelectedFlag()" alt="Selected Country Flag" class="flag-icon"/>
-            <strong>{{ getSelectedCountryName() }}</strong>
-            <span class="subtitle">(<span>{{ 'REGISTER_COMPANY_COUNTRY' | translate }}</span>)*</span>
+            <strong>{{ getSelectedCountryName() | translate }}</strong>
+            <span class="subtitle">({{ 'REGISTER_COMPANY_COUNTRY' | translate }})*</span>
           </mat-select-trigger>
 
           <mat-option *ngFor="let country of countries" [value]="country.value">
-            <img [src]="country.flag" alt="{{ country.name }} Flag" class="flag-icon"/>
-            <strong>{{ country.name }}</strong>
-            <span class="subtitle">(<span>{{ 'REGISTER_COMPANY_COUNTRY' | translate }}</span>)</span>
+            <img [src]="country.flag" alt="{{ country.name | translate }} Flag" class="flag-icon"/>
+            <strong>{{ country.name | translate }}</strong>
+            <span class="subtitle">({{ 'REGISTER_COMPANY_COUNTRY' | translate }})</span>
           </mat-option>
         </mat-select>
       </mat-form-field>

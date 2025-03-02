@@ -37,12 +37,12 @@ export class RegisterCompanyComponent implements OnInit {
   companySuggestions: any[] = [];
   isLoading = false;
   email: string = "example@example.com";
+  isGoogleUser: boolean = false;
 
   countries = [
     {
       value: 'estonia',
-      name: 'Estonia',
-      subtitle: 'company country',
+      name: 'ESTONIA',
       flag: 'assets/images/estonia-flag.svg'
     }
   ];
