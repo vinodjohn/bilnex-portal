@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;700;900&display=swap');
+
+.verify-container {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Geist', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.verify-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.verify-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.otp-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+}
+
+.otp-separator {
+  font-size: 24px;
+  font-weight: normal;
+  color: black;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.verify-btn {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  background-color: #888;
+  color: #fff;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.button-primary {
+  background-color: #A8F367 !important;
+  color: #264308 !important;
+}
+
+.disabled-btn {
+  background-color: #888 !important;
+  cursor: not-allowed;
+}
+
+.ng-otp-input-wrapper input,
+.ng-otp-input-wrapper .otp-input {
+  width: 38px !important;
+  height: 48px !important;
+  border-radius: 10px !important;
+  border: 2px solid #9B9F99 !important;
+  font-size: 20px !important;
+  font-weight: normal !important;
+  text-align: center !important;
+  margin-right: 1px !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.ng-otp-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ng-otp-input-wrapper .otp-input:nth-child(3) {
+  margin-right: 24px !important;
+}
+
+.ng-otp-input-wrapper input:hover,
+.ng-otp-input-wrapper .otp-input:hover {
+  border-color: #388e3c !important;
+}
+
+.ng-otp-input-wrapper input:focus,
+.ng-otp-input-wrapper .otp-input:focus {
+  border-color: #2e7d32 !important;
+  outline: none !important;
+}
+
+.ng-otp-input-wrapper input:focus-visible {
+  outline: none !important;
+}

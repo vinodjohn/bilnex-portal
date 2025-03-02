@@ -21,8 +21,13 @@
   "SIGNUP_TITLE": "Seadistage oma tööruum oma peamise e-posti aadressiga!",
   "SIGNUP_EMAIL": "Sisestage oma e-posti aadress",
   "SIGNUP_EMAIL_INFO": "Kui teil on tööalane e-posti aadress, aitab see teil arveid saata ja saajatega ühendust võtta lihtsamalt.",
-  "SIGNUP_CONTINUE": "Jätka",
+  "CONTINUE_BTN": "Jätka",
   "SIGNUP_OR": "või",
   "SIGNUP_GOOGLE": "Jätka Google'iga",
-  "SIGNUP_ALREADY_ACCOUNT": "Mul on juba konto"
+  "SIGNUP_ALREADY_ACCOUNT": "Mul on juba konto",
+  "VERIFY_EMAIL_TITLE": "Palun kontrolli oma e-posti ja kinnita oma aadress kohe!",
+  "VERIFY_EMAIL_SUBTITLE1": "Saatsime kinnituskoodi aadressile ",
+  "VERIFY_EMAIL_SUBTITLE2": ". Palun sisesta oma e-kirjas olev 6-kohaline kood allpool.",
+  "VERIFY_RESEND_BUTTON": "Saada kinnituskood uuesti",
+  "VERIFY_RESEND_BUTTON2": "Saada kinnituskood uuesti kohe"
 }

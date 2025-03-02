@@ -21,8 +21,13 @@
   "SIGNUP_TITLE": "Set up your workspace with your primary email address!",
   "SIGNUP_EMAIL": "Enter your email address",
   "SIGNUP_EMAIL_INFO": " Using your work email (if you have one) will make sending invoices and contacting recipients easier.",
-  "SIGNUP_CONTINUE": "Continue",
+  "CONTINUE_BTN": "Continue",
   "SIGNUP_OR": "or",
   "SIGNUP_GOOGLE": "Continue with Google",
-  "SIGNUP_ALREADY_ACCOUNT": "I already have an account"
+  "SIGNUP_ALREADY_ACCOUNT": "I already have an account",
+  "VERIFY_EMAIL_TITLE": "Please check your email and verify your address now!",
+  "VERIFY_EMAIL_SUBTITLE1": "We sent Verification code to ",
+  "VERIFY_EMAIL_SUBTITLE2": ". Please enter the 6-digit code from your email below.",
+  "VERIFY_RESEND_BUTTON": "Resend verification code",
+  "VERIFY_RESEND_BUTTON2": "Resend verification code now"
 }

@@ -11,8 +11,9 @@
 
       <div class="info-button-wrapper" [class.visible]="showInfoBox">
         <div class="email-info"><span>{{ 'SIGNUP_EMAIL_INFO' | translate }}</span></div>
-        <button class="button-primary full-width fade-in" type="submit">
-          <span>{{ 'SIGNUP_CONTINUE' | translate }}</span>
+        <button class="button-primary full-width fade-in" type="submit"
+                [routerLink]="['/auth/verify-email']">
+          <span>{{ 'CONTINUE_BTN' | translate }}</span>
         </button>
       </div>
     </div>
