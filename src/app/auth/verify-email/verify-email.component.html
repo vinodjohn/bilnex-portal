@@ -2,21 +2,24 @@
   <h2 class="verify-title"><span>{{ 'VERIFY_EMAIL_TITLE' | translate }}</span></h2>
   <p class="verify-subtitle">
     <span>{{ 'VERIFY_EMAIL_SUBTITLE1' | translate }}</span> <strong>{{ email }}</strong> <span>{{
-      'VERIFY_EMAIL_SUBTITLE2' | translate }}</span>
+      'VERIFY_EMAIL_SUBTITLE2' | translate
+    }}</span>
   </p>
 
   <div class="otp-container">
-    <ng-otp-input [config]="otpConfig" (onInputChange)="handleOtpChange($event)"></ng-otp-input>
+    <ng-otp-input (onInputChange)="handleOtpChange($event)" [config]="otpConfig"></ng-otp-input>
     <div class="otp-separator">-</div>
   </div>
 
   <button
-    class="verify-btn"
-    [ngClass]="{ 'button-primary': resendEnabled || isOtpComplete, 'disabled-btn': !resendEnabled && !isOtpComplete }"
-    [disabled]="!resendEnabled && !isOtpComplete"
     (click)="isOtpComplete ? submitOtp() : resendOtp()"
+    [disabled]="!resendEnabled && !isOtpComplete"
+    [ngClass]="{ 'button-primary': resendEnabled || isOtpComplete, 'disabled-btn': !resendEnabled && !isOtpComplete }"
+    class="verify-btn"
   >
-    {{ isOtpComplete ? ('CONTINUE_BTN' | translate) : (resendEnabled ? ('VERIFY_RESEND_BUTTON2' | translate) :
-    ('VERIFY_RESEND_BUTTON' | translate) + ' ' + formatTimer(timer)) }}
+    {{
+      isOtpComplete ? ('CONTINUE_BTN' | translate) : (resendEnabled ? ('VERIFY_EMAIL_RESEND_BUTTON2' | translate) :
+        ('VERIFY_EMAIL_RESEND_BUTTON' | translate) + ' ' + formatTimer(timer))
+    }}
   </button>
 </div>

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {NgOtpInputComponent} from 'ng-otp-input';
 import {NgClass} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-verify-email',
@@ -30,7 +31,7 @@ export class VerifyEmailComponent implements OnInit {
     showError: true,
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -44,17 +45,18 @@ export class VerifyEmailComponent implements OnInit {
 
   submitOtp() {
     console.log('Submitting OTP:', this.enteredOtp);
+    this.router.navigate(['/auth/register-company']);
 
-    this.http.post('/api/verify-otp', {otp: this.enteredOtp}).subscribe(
-      (response) => {
-        console.log('OTP Verified Successfully:', response);
-      },
-      (error) => {
-        console.error('OTP Verification Failed:', error);
-        this.isOtpIncorrect = true;
-        setTimeout(() => (this.isOtpIncorrect = false), 1000);
-      }
-    );
+    // this.http.post('/api/verify-otp', {otp: this.enteredOtp}).subscribe(
+    //   (response) => {
+    //     console.log('OTP Verified Successfully:', response);
+    //   },
+    //   (error) => {
+    //     console.error('OTP Verification Failed:', error);
+    //     this.isOtpIncorrect = true;
+    //     setTimeout(() => (this.isOtpIncorrect = false), 1000);
+    //   }
+    // );
   }
 
   startTimer() {

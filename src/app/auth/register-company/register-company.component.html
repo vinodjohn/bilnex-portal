@@ -1,0 +1,95 @@
+<div class="workspace-container">
+  <div class="scroll-wrapper">
+    <h2 class="title"><span>{{ 'REGISTER_COMPANY_TITLE' | translate }}</span></h2>
+    <div class="user-confirmation">
+      <span><span>{{ 'REGISTER_COMPANY_CONFIRMATION' | translate }}</span><span
+        class="user-confirmation-email">{{ email }}</span></span>
+      <button class="change-btn"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
+    </div>
+
+    <div class="company-header">
+      <h3 class="section-title">{{ 'REGISTER_COMPANY_DETAILS' | translate }}</h3>
+      <div class="line"></div>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="workspaceForm">
+      <mat-form-field appearance="outline" class="full-width country-dropdown custom-input">
+        <mat-select formControlName="companyCountry">
+          <mat-select-trigger>
+            <img [src]="getSelectedFlag()" alt="Selected Country Flag" class="flag-icon"/>
+            <strong>{{ getSelectedCountryName() }}</strong>
+            <span class="subtitle">(<span>{{ 'REGISTER_COMPANY_COUNTRY' | translate }}</span>)*</span>
+          </mat-select-trigger>
+
+          <mat-option *ngFor="let country of countries" [value]="country.value">
+            <img [src]="country.flag" alt="{{ country.name }} Flag" class="flag-icon"/>
+            <strong>{{ country.name }}</strong>
+            <span class="subtitle">(<span>{{ 'REGISTER_COMPANY_COUNTRY' | translate }}</span>)</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width custom-input">
+        <mat-label><span>{{ 'REGISTER_COMPANY_NAME' | translate }}</span></mat-label>
+        <input (input)="onCompanyNameInput($event)" formControlName="companyName" matInput type="text">
+        <mat-error *ngIf="workspaceForm.get('companyName')?.hasError('required')">
+          <span>{{ 'REGISTER_COMPANY_NAME_ERROR' | translate }}</span></mat-error>
+      </mat-form-field>
+
+      <div *ngIf="companySuggestions.length" class="suggestions">
+        <div (click)="selectCompany(company)" *ngFor="let company of companySuggestions" class="suggestion-item">
+          {{ company.name }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width custom-input">
+          <mat-label><span>{{ 'REGISTER_COMPANY_REG_CODE' | translate }}</span></mat-label>
+          <input formControlName="regCode" matInput type="text">
+          <mat-error *ngIf="workspaceForm.get('regCode')?.hasError('required')">
+            <span>{{ 'REGISTER_COMPANY_REG_CODE_ERROR_REQUIRED' | translate }}</span></mat-error>
+          <mat-error *ngIf="workspaceForm.get('regCode')?.hasError('pattern')">
+            <span>{{ 'REGISTER_COMPANY_REG_CODE_ERROR_NUMBERS' | translate }}</span></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width custom-input">
+          <mat-label><span>{{ 'REGISTER_COMPANY_VAT_NR' | translate }}</span></mat-label>
+          <input formControlName="vatNumber" matInput type="text">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width custom-input">
+        <mat-label><span>{{ 'REGISTER_COMPANY_ADDRESS' | translate }}</span></mat-label>
+        <input formControlName="address" matInput type="text">
+        <mat-error *ngIf="workspaceForm.get('address')?.hasError('required')">
+          <span>{{ 'REGISTER_COMPANY_ADDRESS_ERROR' | translate }}</span></mat-error>
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width custom-input">
+          <mat-label><span>{{ 'REGISTER_COMPANY_CITY' | translate }}</span></mat-label>
+          <input formControlName="city" matInput type="text">
+          <mat-error *ngIf="workspaceForm.get('city')?.hasError('required')">
+            <span>{{ 'REGISTER_COMPANY_CITY_ERROR' | translate }}</span></mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="half-width custom-input">
+          <mat-label><span>{{ 'REGISTER_COMPANY_ZIP' | translate }}</span></mat-label>
+          <input formControlName="zip" matInput type="text">
+        </mat-form-field>
+      </div>
+
+      <p class="section-title"><span>{{ 'REGISTER_COMPANY_CONSENT' | translate }}</span></p>
+      <mat-radio-group formControlName="emailConsent">
+        <mat-radio-button
+          value="yes"><span class="consent">{{ 'REGISTER_COMPANY_CONSENT_YES' | translate }}</span></mat-radio-button>
+        <mat-radio-button
+          value="no"><span class="consent">{{ 'REGISTER_COMPANY_CONSENT_NO' | translate }}</span></mat-radio-button>
+      </mat-radio-group>
+
+      <p class="terms-text"><span>{{ 'REGISTER_COMPANY_TERMS' | translate }}</span></p>
+
+      <button class="button-primary full-width" type="submit">
+        <span>{{ 'REGISTER_COMPANY_CREATE_BTN' | translate }}</span>
+      </button>
+    </form>
+  </div>
+</div>

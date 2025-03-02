@@ -40,7 +40,7 @@
                           [selectedLanguage]="selectedLanguage">
       </app-language-modal>
 
-      <button [routerLink]="['/login']" *ngIf="showForSignup" class="button-primary">{{ 'LOGIN' | translate }}</button>
+      <button *ngIf="showForSignup" [routerLink]="['/login']" class="button-primary">{{ 'LOGIN' | translate }}</button>
 
       <ng-container *ngIf="isLoggedIn">
         <button [matMenuTriggerFor]="profile" aria-label="profile" mat-icon-button>
@@ -66,14 +66,15 @@
       </ng-container>
     </div>
 
-    <div class="banner" *ngIf="showForSignup">
+    <div *ngIf="showForSignup" class="banner">
       <h1 class="banner-title animated-text">{{ 'BANNER_TITLE' | translate }}</h1>
       <p class="banner-subtitle animated-text">{{ 'BANNER_SUBTITLE' | translate }}</p>
-      <button class="get-started-btn" [routerLink]="['/auth/signup']"
-              (click)="getStarted()">{{ 'GET_STARTED' | translate }}</button>
+      <button (click)="getStarted()" [routerLink]="['/auth/signup']"
+              class="get-started-btn">{{ 'GET_STARTED' | translate }}
+      </button>
     </div>
 
-    <div class="main-content" *ngIf="!showForSignup">
+    <div *ngIf="!showForSignup" class="main-content">
       <router-outlet></router-outlet>
     </div>
   </div>

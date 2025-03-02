@@ -48,9 +48,15 @@
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-5px);
+  }
+  40%, 80% {
+    transform: translateX(5px);
+  }
 }
 
 .verify-btn {
@@ -107,7 +113,7 @@
 
 .ng-otp-input-wrapper input:focus,
 .ng-otp-input-wrapper .otp-input:focus {
-  border-color: #2e7d32 !important;
+  border-color: #388e3c !important;
   outline: none !important;
 }
 
