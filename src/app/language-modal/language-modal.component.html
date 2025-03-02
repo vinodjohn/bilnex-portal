@@ -1,0 +1,43 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <button (click)="closeModal.emit()" class="close-button">
+      <div class="close-icon"></div>
+    </button>
+
+    <h2 class="modal-title"><span>{{ 'SYSTEM_LANGUAGE' | translate }}</span></h2>
+
+    <div class="info-section">
+      <div class="info-icon"></div>
+      <p class="info-text">
+        <strong><span>{{ 'LANGUAGE_INFO_1' | translate }}</span></strong>
+        <span style="color: #5C6058">{{ 'LANGUAGE_INFO_2' | translate }}</span>
+      </p>
+    </div>
+
+    <div class="language-list">
+      <button (click)="selectLanguage(lang.code)" *ngFor="let lang of languages"
+              [class.active]="selectedLanguage !== lang.code"
+              [class.disabled]="selectedLanguage === lang.code"
+              class="language-option">
+        <strong>{{ lang.label }}</strong>
+        <span>{{ lang.region }}</span>
+      </button>
+    </div>
+
+    <div class="modal-footer">
+      <div class="footer-left">
+        <div class="flag-icon"></div>
+        <div class="footer-content">
+          Estonia
+          <span>Eesti</span>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-content">
+          EUR
+          <span>Euro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{
+  "BANNER_TITLE": "E-Invoicing, Simplified.",
+  "BANNER_SUBTITLE": "Automate, integrate, and stay compliant with effortless e-invoicing.",
+  "GET_STARTED": "Get Started",
+  "LOGIN": "Login",
+  "LANGUAGE_SWITCH": "Select Language",
+  "PROFILE": "Profile",
+  "EDIT_PROFILE": "Edit Profile",
+  "CHANGE_PASSWORD": "Change Password",
+  "LOGOUT": "Sign Out",
+  "HI": "Hi, ",
+  "DASHBOARD": "Dashboard",
+  "INVOICE": "Invoice",
+  "CUSTOMER": "Customer",
+  "PAYMENT": "Payment",
+  "USER": "User",
+  "COMPANY": "Company",
+  "SYSTEM_LANGUAGE": "System language",
+  "LANGUAGE_INFO_1": "Choose your preferred system language",
+  "LANGUAGE_INFO_2": " for buttons and other displayed text on Bilnex. Please note that invoices can be sent in different languages as well."
+}

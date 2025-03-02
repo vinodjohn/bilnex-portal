@@ -1,0 +1,21 @@
+{
+  "BANNER_TITLE": "E-arveldamine, lihtsustatud.",
+  "BANNER_SUBTITLE": "Automatiseeri, integreeri ja püsi vastavuses vaevatu e-arveldamisega.",
+  "GET_STARTED": "Alusta",
+  "LOGIN": "Logi sisse",
+  "LANGUAGE_SWITCH": "Vali keel",
+  "PROFILE": "Profiil",
+  "EDIT_PROFILE": "Muuda profiili",
+  "CHANGE_PASSWORD": "Muuda parooli",
+  "LOGOUT": "Logi välja",
+  "HI": "Tere, ",
+  "DASHBOARD": "Töölaud",
+  "INVOICE": "Arve",
+  "CUSTOMER": "Klient",
+  "PAYMENT": "Makse",
+  "USER": "Kasutaja",
+  "COMPANY": "Ettevõte",
+  "SYSTEM_LANGUAGE": "Süsteemi keel",
+  "LANGUAGE_INFO_1": "Valige oma eelistatud süsteemi keel",
+  "LANGUAGE_INFO_2": " nuppude ja muu Bilnexi kuvamise teksti jaoks. Pange tähele, et arveid saab saata ka erinevates keeltes."
+}
