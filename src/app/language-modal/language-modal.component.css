@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.close-button:hover {
+  border: 1px solid #264308;
+}
+
 .close-icon {
   width: 15px;
   height: 15px;

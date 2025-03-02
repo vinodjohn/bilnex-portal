@@ -17,5 +17,12 @@
   "COMPANY": "Ettevõte",
   "SYSTEM_LANGUAGE": "Süsteemi keel",
   "LANGUAGE_INFO_1": "Valige oma eelistatud süsteemi keel",
-  "LANGUAGE_INFO_2": " nuppude ja muu Bilnexi kuvamise teksti jaoks. Pange tähele, et arveid saab saata ka erinevates keeltes."
+  "LANGUAGE_INFO_2": " nuppude ja muu Bilnexi kuvamise teksti jaoks. Pange tähele, et arveid saab saata ka erinevates keeltes.",
+  "SIGNUP_TITLE": "Seadistage oma tööruum oma peamise e-posti aadressiga!",
+  "SIGNUP_EMAIL": "Sisestage oma e-posti aadress",
+  "SIGNUP_EMAIL_INFO": "Kui teil on tööalane e-posti aadress, aitab see teil arveid saata ja saajatega ühendust võtta lihtsamalt.",
+  "SIGNUP_CONTINUE": "Jätka",
+  "SIGNUP_OR": "või",
+  "SIGNUP_GOOGLE": "Jätka Google'iga",
+  "SIGNUP_ALREADY_ACCOUNT": "Mul on juba konto"
 }

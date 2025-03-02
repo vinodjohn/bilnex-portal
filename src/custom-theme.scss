@@ -87,6 +87,13 @@ $custom-theme: mat.m2-define-light-theme(
 
 @include mat.all-component-themes($custom-theme);
 
+:root {
+  @include mat.form-field-overrides((
+    filled-container-shape: var(--mat-sys-corner-medium)
+  ));
+}
+
+
 .button-primary {
   font-size: 16px;
   font-weight: bold;
@@ -100,7 +107,8 @@ $custom-theme: mat.m2-define-light-theme(
 }
 
 .button-primary:hover {
-  opacity: 0.8;
+  background-color: #264308;
+  color: #bdbdbd;
 }
 
 .button-secondary {

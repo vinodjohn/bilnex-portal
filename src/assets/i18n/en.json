@@ -17,5 +17,12 @@
   "COMPANY": "Company",
   "SYSTEM_LANGUAGE": "System language",
   "LANGUAGE_INFO_1": "Choose your preferred system language",
-  "LANGUAGE_INFO_2": " for buttons and other displayed text on Bilnex. Please note that invoices can be sent in different languages as well."
+  "LANGUAGE_INFO_2": " for buttons and other displayed text on Bilnex. Please note that invoices can be sent in different languages as well.",
+  "SIGNUP_TITLE": "Set up your workspace with your primary email address!",
+  "SIGNUP_EMAIL": "Enter your email address",
+  "SIGNUP_EMAIL_INFO": " Using your work email (if you have one) will make sending invoices and contacting recipients easier.",
+  "SIGNUP_CONTINUE": "Continue",
+  "SIGNUP_OR": "or",
+  "SIGNUP_GOOGLE": "Continue with Google",
+  "SIGNUP_ALREADY_ACCOUNT": "I already have an account"
 }

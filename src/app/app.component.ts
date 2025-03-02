@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -42,8 +42,9 @@ export class AppComponent {
   translate = inject(TranslateService);
   isModalOpen: boolean = false;
   selectedLanguage: string = localStorage.getItem('language') || 'en';
+  showForSignup: boolean = true;
 
-  constructor() {
+  constructor(private router: Router) {
     this.translate.setDefaultLang(this.selectedLanguage);
     this.translate.use(this.selectedLanguage);
   }
@@ -65,5 +66,10 @@ export class AppComponent {
 
   closeModal() {
     this.isModalOpen = false;
+  }
+
+  getStarted() {
+    this.showForSignup = false;
+    this.router.navigate(['/auth/signup']);
   }
 }

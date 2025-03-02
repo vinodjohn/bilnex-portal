@@ -1,0 +1,32 @@
+<div class="signup-container">
+  <h2 class="signup-title"><span>{{ 'SIGNUP_TITLE' | translate }}</span></h2>
+
+  <form (ngSubmit)="onSubmit()" class="signup-form">
+    <div class="form-field-container">
+      <mat-form-field class="full-width custom-input" color="primary" appearance="outline">
+        <mat-label><span>{{ 'SIGNUP_EMAIL' | translate }}</span></mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" required
+               (focus)="onFocus()" (input)="onFocus()" (blur)="onBlur()">
+      </mat-form-field>
+
+      <div class="info-button-wrapper" [class.visible]="showInfoBox">
+        <div class="email-info"><span>{{ 'SIGNUP_EMAIL_INFO' | translate }}</span></div>
+        <button class="button-primary full-width fade-in" type="submit">
+          <span>{{ 'SIGNUP_CONTINUE' | translate }}</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="or-divider">
+    <span class="line"></span> <span>{{ 'SIGNUP_OR' | translate }}</span> <span class="line"></span>
+  </div>
+
+  <button class="google-button full-width">
+    <img src="assets/images/google-icon.png" alt="Google Icon">
+    <span>{{ 'SIGNUP_GOOGLE' | translate }}</span>
+  </button>
+
+  <a class="already-account" href="https://www.google.com/"
+     [routerLink]="['/auth/signin']"><span>{{ 'SIGNUP_ALREADY_ACCOUNT' | translate }}</span></a>
+</div>
