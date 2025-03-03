@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {Router, RouterLink, RouterOutlet} from '@angular/router';
+import {Component, ElementRef, inject, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -9,6 +9,11 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {NgIf} from '@angular/common';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {LanguageModalComponent} from './language-modal/language-modal.component';
+import {Subscription} from 'rxjs';
+import {EventBusService} from './shared/service/event-bus.service';
+import {StorageService} from './shared/service/storage.service';
+import {AuthService} from './shared/service/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -34,17 +39,20 @@ import {LanguageModalComponent} from './language-modal/language-modal.component'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   role = '';
   isLoggedIn = false;
   personName = '';
-
   translate = inject(TranslateService);
   isModalOpen: boolean = false;
   selectedLanguage: string = localStorage.getItem('language') || 'en';
   showForSignup: boolean = true;
 
-  constructor(private router: Router) {
+  eBSubs?: Subscription;
+  routerSubscription: Subscription | null = null;
+
+  constructor(private router: Router, private eventBusService: EventBusService, private storageService: StorageService,
+              private authService: AuthService, private snackBar: MatSnackBar, private el: ElementRef, private renderer: Renderer2) {
     this.translate.setDefaultLang(this.selectedLanguage);
     this.translate.use(this.selectedLanguage);
   }
@@ -76,5 +84,66 @@ export class AppComponent {
   login() {
     this.showForSignup = false;
     this.router.navigate(['/auth/signin']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
+
+  ngOnInit(): void {
+    this.onComponentLoad();
+
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        console.log('Route changed to:', event.url);
+        this.onRouteChange(event.url);
+        this.onComponentLoad();
+      }
+    });
+
+    this.eBSubs = this.eventBusService.on('sign-out', () => {
+      this.signOut();
+    });
+  }
+
+  onComponentLoad() {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+
+    if (this.isLoggedIn) {
+      const person = this.storageService.getPerson();
+      this.role = person.role;
+      this.personName = person.fullName;
+    } else if (this.router.url !== '/signup') {
+      this.router.navigate(['/signin']);
+    }
+  }
+
+  signOut(): void {
+    this.authService.signOut().subscribe({
+      next: () => {
+        this.storageService.clean();
+
+        this.snackBar.open('Signed out successfully', 'Close', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
+
+        this.router.navigate(['/sign-in']);
+      },
+      error: () => {
+        this.snackBar.open('Technical error. Sign out failed!', 'Close', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
+      }
+    });
+  }
+
+  private onRouteChange(newRoute: string) {
+    if (newRoute !== '/') {
+      this.renderer.setStyle(this.el.nativeElement.querySelector('.logo'), 'transform', 'scale(0.75)');
+    }
   }
 }

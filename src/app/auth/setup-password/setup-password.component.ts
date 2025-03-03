@@ -61,7 +61,7 @@ export class SetupPasswordComponent implements OnInit {
       this.authService.signUpConfirm(this.signup).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/auth/signin'], {state: {email: this.signup.email}});
+          this.router.navigate(['/dashboard'], {state: {email: this.signup.email}});
         },
         error: err => {
           this.errorMessage = err.error.message;
