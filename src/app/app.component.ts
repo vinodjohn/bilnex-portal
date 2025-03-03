@@ -128,11 +128,6 @@ export class AppComponent implements OnInit, OnDestroy {
       next: () => {
         this.storageService.clean();
 
-        this.snackBar.open('Signed out successfully', 'Close', {
-          duration: 3000,
-          panelClass: ['snackbar-success']
-        });
-
         this.router.navigate(['']).then(() => {
           window.location.reload();
         });
