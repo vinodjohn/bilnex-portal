@@ -28,12 +28,10 @@ export class AppInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Intercepting request:', request.url);
 
-    // **🚀 Exclude translation & assets requests**
     if (request.url.includes('/assets/i18n/') || request.url.includes('/assets/')) {
-      return next.handle(request); // Don't modify, just pass through
+      return next.handle(request);
     }
 
-    // Modify request only if it's an API call
     if (!request.url.startsWith('http')) {
       request = request.clone({
         url: `${environment.baseURL}${request.url}`,
@@ -41,7 +39,7 @@ export class AppInterceptor implements HttpInterceptor {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        withCredentials: true, // Ensure authentication tokens & cookies are sent
+        withCredentials: true,
       });
     }
 

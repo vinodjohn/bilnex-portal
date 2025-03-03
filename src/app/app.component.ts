@@ -9,8 +9,6 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
 import {NgIf} from '@angular/common';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {LanguageModalComponent} from './language-modal/language-modal.component';
-import {httpInterceptorProviders} from './shared/interceptor/app.interceptor';
-import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',

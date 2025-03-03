@@ -2,10 +2,10 @@ import {ApplicationConfig, importProvidersFrom, provideZoneChangeDetection} from
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {HttpClient, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
-import {AppInterceptor, httpInterceptorProviders} from './shared/interceptor/app.interceptor';
+import {httpInterceptorProviders} from './shared/interceptor/app.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

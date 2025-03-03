@@ -12,7 +12,6 @@ import {Router, RouterLink} from '@angular/router';
 import {Company} from '../../shared/model/Company';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {SignupComponent} from '../signup/signup.component';
 
 @Component({
   selector: 'app-register-company',
