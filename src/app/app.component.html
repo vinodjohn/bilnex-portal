@@ -3,30 +3,27 @@
     <img alt="logo" class=logo src="assets/images/logo.svg">
   </div>
 
-  <div *ngIf="isLoggedIn" class="sidebar animated-sidebar">
-    <div class="menu-wrapper">
-      <div class="menu-container">
-        <button *ngIf="isLoggedIn" [routerLink]="['/']" class="inter"
-                mat-button><span>{{ 'DASHBOARD' | translate }}</span></button>
-        <button *ngIf="isLoggedIn" [routerLink]="['/invoice']" class="inter"
-                mat-button><span>{{ 'INVOICE' | translate }}</span></button>
-        <button *ngIf="isLoggedIn" [routerLink]="['/customer']" class="inter"
-                mat-button><span>{{ 'CUSTOMER' | translate }}</span>
-        </button>
-        <button *ngIf="isLoggedIn" [routerLink]="['/payment']" class="inter"
-                mat-button><span>{{ 'PAYMENT' | translate }}</span>
-        </button>
-        <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/person']" class="inter" mat-button><span>{{
-            'USER' |
-              translate
-          }}</span></button>
-        <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/company']" class="inter" mat-button><span>{{
-            'COMPANY' |
-              translate
-          }}</span></button>
-      </div>
-      <div class="menu-gradient-line"></div>
-    </div>
+  <div *ngIf="isLoggedIn" class="floating-menu">
+    <button *ngIf="isLoggedIn" [routerLink]="['/dashboard']" class="menu-item"
+            mat-button>{{ 'DASHBOARD' | translate }}
+    </button>
+    <button *ngIf="isLoggedIn" [routerLink]="['/invoice']" class="menu-item"
+            mat-button>{{ 'INVOICE' | translate }}
+    </button>
+    <button *ngIf="isLoggedIn" [routerLink]="['/customer']" class="menu-item"
+            mat-button>{{ 'CUSTOMER' | translate }}
+    </button>
+    <button *ngIf="isLoggedIn" [routerLink]="['/payment']" class="menu-item"
+            mat-button>{{ 'PAYMENT' | translate }}
+    </button>
+    <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/person']" class="inter" mat-button><span>{{
+        'USER' |
+          translate
+      }}</span></button>
+    <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/company']" class="inter" mat-button><span>{{
+        'COMPANY' |
+          translate
+      }}</span></button>
   </div>
 
   <div class="content-area">
@@ -50,15 +47,11 @@
           <button disabled mat-menu-item>
             <span><span>{{ 'HI' | translate }}</span> {{ personName }}</span>
           </button>
-          <button [routerLink]="['/profile']" mat-menu-item>
-            <mat-icon>edit</mat-icon>
-            <span>{{ 'EDIT_PROFILE' | translate }}</span>
-          </button>
           <button [routerLink]="['/change-password']" mat-menu-item>
             <mat-icon>key</mat-icon>
             <span>{{ 'CHANGE_PASSWORD' | translate }}</span>
           </button>
-          <button mat-menu-item>
+          <button (click)="signOut()" mat-menu-item>
             <mat-icon>exit_to_app</mat-icon>
             <span>{{ 'LOGOUT' | translate }}</span>
           </button>

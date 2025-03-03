@@ -60,14 +60,18 @@ export class SignupComponent implements AfterViewInit {
 
   onSubmit() {
     if (this.isEmailAlreadyExists) {
-      this.router.navigate(['/auth/signin'], {state: {email: this.signUpForm.value.email}});
+      this.router.navigate(['/auth/signin']);
     } else {
       if (this.signUpForm.valid) {
+        this.email = this.signUpForm.get('email')?.value;
+        const signUp = new SignUp(this.email, '', '', false, null);
+        this.storageService.saveSignUp(signUp);
         this.loading = true;
-        this.authService.signUp(new SignUp(this.signUpForm.get('email')?.value, "", "", false, null)).subscribe({
+
+        this.authService.signUp(new SignUp(this.email, "", "", false, null)).subscribe({
           next: () => {
             this.loading = false;
-            this.router.navigate(['/auth/verify-email'], {state: {email: this.signUpForm.value.email}});
+            this.router.navigate(['/auth/verify-email']);
           },
           error: err => {
             if (err.status === 400) {
@@ -95,7 +99,7 @@ export class SignupComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.storageService.isLoggedIn()) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/dashboard']);
     }
   }
 }

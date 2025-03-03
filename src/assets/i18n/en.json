@@ -26,7 +26,7 @@
   "SIGNUP_GOOGLE": "Continue with Google",
   "SIGNUP_ALREADY_ACCOUNT": "I already have an account",
   "VERIFY_EMAIL_TITLE": "Please check your email and verify your address now!",
-  "VERIFY_EMAIL_SUBTITLE1": "We sent Verification code to ",
+  "VERIFY_EMAIL_SUBTITLE1": "We have sent a Verification Code to ",
   "VERIFY_EMAIL_SUBTITLE2": ". Please enter the 6-digit code from your email below.",
   "VERIFY_EMAIL_RESEND_BUTTON": "Resend verification code",
   "VERIFY_EMAIL_RESEND_BUTTON2": "Resend verification code now",

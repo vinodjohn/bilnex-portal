@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../../shared/service/auth.service';
+import {StorageService} from '../../shared/service/storage.service';
 
 @Component({
   selector: 'app-setup-password',
@@ -34,7 +35,8 @@ export class SetupPasswordComponent implements OnInit {
   loading = false;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, private authService: AuthService,
+              private storageService: StorageService) {
     this.passwordForm = this.fb.group({
       password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
       stayLoggedIn: [false]
@@ -56,12 +58,16 @@ export class SetupPasswordComponent implements OnInit {
     if (this.passwordForm.valid) {
       this.signup = new SignUp(this.signup.email, this.signup.code, this.passwordForm.get('password')?.value, this.signup.isVerified, this.signup.company);
 
-      console.log(this.signup);
-
       this.authService.signUpConfirm(this.signup).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate(['/dashboard'], {state: {email: this.signup.email}});
+
+          this.snackBar.open("Congratulations! Workspace created successfully. You can now login.", 'Close', {
+            duration: 5000,
+            panelClass: ['snackbar-']
+          });
+
+          this.router.navigate(['/auth/signin']);
         },
         error: err => {
           this.errorMessage = err.error.message;
@@ -82,7 +88,7 @@ export class SetupPasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.signup = history.state.signup;
+    this.signup = this.storageService.getSignUp();
     this.email = this.signup.email;
   }
 }

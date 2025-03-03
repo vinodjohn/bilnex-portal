@@ -10,8 +10,9 @@
 
       <mat-form-field appearance="outline" class="full-width custom-input">
         <mat-label><span>{{ 'PASSWORD_INPUT' | translate }}</span></mat-label>
-        <input [type]="passwordVisible ? 'password' : 'text'" formControlName="password" matInput>
-        <button (click)="togglePasswordVisibility()" class="no-ripple-btn" disableRipple mat-icon-button matSuffix>
+        <input [type]="passwordVisible ? 'text' : 'password'" formControlName="password" matInput>
+        <button (click)="togglePasswordVisibility()" class="no-ripple-btn" disableRipple mat-icon-button matSuffix
+                type="button">
           <img *ngIf="passwordVisible" alt="Show password" src="assets/images/eye-closed.png">
           <img *ngIf="!passwordVisible" alt="Hide password" src="assets/images/eye-open.png">
         </button>
@@ -25,13 +26,13 @@
         <span class="toggle-label"><span>{{ 'PASSWORD_TOGGLE_TEXT' | translate }}</span></span>
       </div>
 
-      <button [routerLink]="['/']" class="button-primary full-width" type="submit">
+      <button class="button-primary full-width" type="submit">
         <span>{{ 'CONFIRM_BTN' | translate }}</span>
       </button>
     </div>
   </form>
 
-  <button [routerLink]="['/']" class="already-account full-width">
+  <button [routerLink]="['']" class="already-account full-width">
     <span>{{ 'SIGNIN_TROUBLE' | translate }}</span>
   </button>
 

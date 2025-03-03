@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../shared/service/auth.service';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {StorageService} from '../../shared/service/storage.service';
 
 @Component({
   selector: 'app-verify-email',
@@ -34,11 +35,15 @@ export class VerifyEmailComponent implements OnInit {
     showError: true,
   };
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router,
+              private storageService: StorageService) {
   }
 
   ngOnInit() {
-    this.email = history.state.email;
+    this.email = this.storageService.getSignUp().email;
+
+    console.log(this.email);
+
     this.startTimer();
   }
 
@@ -54,7 +59,9 @@ export class VerifyEmailComponent implements OnInit {
       next: () => {
         console.log('OTP Verified Successfully');
         let signUp = new SignUp(this.email, this.enteredOtp, "", true, null);
-        this.router.navigate(['/auth/register-company'], {state: {signup: signUp}});
+        this.storageService.saveSignUp(signUp);
+
+        this.router.navigate(['/auth/register-company']);
       },
       error: (err) => {
         console.error('OTP Verification Failed:', err);

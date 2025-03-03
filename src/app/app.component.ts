@@ -34,7 +34,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     NgIf,
     MatMenuItem,
     TranslatePipe,
-    LanguageModalComponent
+    LanguageModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -94,6 +94,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.onComponentLoad();
+    this.showForSignup = !this.isLoggedIn;
 
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -110,13 +111,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onComponentLoad() {
     this.isLoggedIn = this.storageService.isLoggedIn();
+    console.log(this.router.url);
+    console.log(this.router.url.indexOf('/auth/signup'));
 
     if (this.isLoggedIn) {
       const person = this.storageService.getPerson();
       this.role = person.role;
       this.personName = person.fullName;
-    } else if (this.router.url !== '/signup') {
-      this.router.navigate(['/signin']);
+    } else if (this.router.url.indexOf('/auth') < 0) {
+      this.router.navigate(['']);
     }
   }
 
@@ -130,7 +133,9 @@ export class AppComponent implements OnInit, OnDestroy {
           panelClass: ['snackbar-success']
         });
 
-        this.router.navigate(['/sign-in']);
+        this.router.navigate(['']).then(() => {
+          window.location.reload();
+        });
       },
       error: () => {
         this.snackBar.open('Technical error. Sign out failed!', 'Close', {

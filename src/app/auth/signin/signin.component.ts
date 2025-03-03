@@ -91,11 +91,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(history.state.email);
-
-    if (history.state && history.state.email) {
-      this.signInForm.patchValue({email: history.state.email});
-    }
+    const signUp = this.storageService.getSignUp();
+    this.signInForm.patchValue({email: signUp.email});
   }
 
   ngAfterViewInit(): void {

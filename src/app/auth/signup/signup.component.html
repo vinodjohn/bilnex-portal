@@ -5,7 +5,8 @@
     <div class="form-field-container">
       <mat-form-field appearance="outline" class="full-width custom-input" color="primary">
         <mat-label><span>{{ 'EMAIL_INPUT' | translate }}</span></mat-label>
-        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" [readonly]="isEmailAlreadyExists" formControlName="email" matInput
+        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" [readonly]="isEmailAlreadyExists"
+               formControlName="email" matInput
                type="email">
       </mat-form-field>
 

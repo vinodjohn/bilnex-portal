@@ -5,7 +5,7 @@ import {VerifyEmailComponent} from './auth/verify-email/verify-email.component';
 import {RegisterCompanyComponent} from './auth/register-company/register-company.component';
 import {SetupPasswordComponent} from './auth/setup-password/setup-password.component';
 import {SigninComponent} from './auth/signin/signin.component';
-import {AppComponent} from './app.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +19,6 @@ export const routes: Routes = [
       {path: 'setup-password', component: SetupPasswordComponent}
     ]
   },
-  {path: '**', redirectTo: '/'},
-  {path: '', component: AppComponent}
+  {path: '', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
 ];

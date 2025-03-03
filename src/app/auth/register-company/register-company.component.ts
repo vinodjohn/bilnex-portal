@@ -12,6 +12,7 @@ import {Router, RouterLink} from '@angular/router';
 import {Company} from '../../shared/model/Company';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {StorageService} from '../../shared/service/storage.service';
 
 @Component({
   selector: 'app-register-company',
@@ -52,11 +53,12 @@ export class RegisterCompanyComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private snackBar: MatSnackBar,
+              private storageService: StorageService) {
   }
 
   ngOnInit() {
-    this.signup = history.state.signup;
+    this.signup = this.storageService.getSignUp();
     this.email = this.signup.email;
 
     console.log(this.signup);
@@ -154,6 +156,7 @@ export class RegisterCompanyComponent implements OnInit {
   onSubmit() {
     if (this.workspaceForm.valid) {
       this.signup = new SignUp(this.signup.email, this.signup.code, this.signup.password, this.signup.isVerified, this.createCompany());
+      this.storageService.saveSignUp(this.signup);
 
       this.router.navigate(['/auth/setup-password'], {state: {signup: this.signup}});
     } else {
