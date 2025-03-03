@@ -72,4 +72,9 @@ export class AppComponent {
     this.showForSignup = false;
     this.router.navigate(['/auth/signup']);
   }
+
+  login() {
+    this.showForSignup = false;
+    this.router.navigate(['/auth/signin']);
+  }
 }

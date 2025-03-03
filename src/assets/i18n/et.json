@@ -19,8 +19,8 @@
   "LANGUAGE_INFO_1": "Valige oma eelistatud süsteemi keel",
   "LANGUAGE_INFO_2": " nuppude ja muu Bilnexi kuvamise teksti jaoks. Pange tähele, et arveid saab saata ka erinevates keeltes.",
   "SIGNUP_TITLE": "Seadistage oma tööruum oma peamise e-posti aadressiga!",
-  "SIGNUP_EMAIL": "Sisestage oma e-posti aadress",
-  "SIGNUP_EMAIL_INFO": "Kui teil on tööalane e-posti aadress, aitab see teil arveid saata ja saajatega ühendust võtta lihtsamalt.",
+  "EMAIL_INPUT": "Sisestage oma e-posti aadress",
+  "EMAIL_INPUT_INFO": "Kui teil on tööalane e-posti aadress, aitab see teil arveid saata ja saajatega ühendust võtta lihtsamalt.",
   "CONTINUE_BTN": "Jätka",
   "SIGNUP_OR": "või",
   "SIGNUP_GOOGLE": "Jätka Google'iga",
@@ -59,5 +59,8 @@
   "PASSWORD_INPUT": "Vähemalt 8-kohaline parool",
   "PASSWORD_RULE": "Valige parool, mis on vähemalt 8 tähemärki pikk ja sisaldab vähemalt ühte suurtähte, ühte väiketähte ja ühte numbrit. Vajadusel saate oma parooli hiljem muuta.",
   "PASSWORD_TOGGLE_TEXT": "Jääge sellesse usaldusväärsesse seadmesse sisse logituks",
-  "CONFIRM_BTN": "Kinnita"
+  "CONFIRM_BTN": "Kinnita",
+  "SIGNIN_TITLE": "Sisestage oma peamine e-posti aadress, et jätkata.",
+  "SIGNIN_TROUBLE": "Probleem sisselogimisega",
+  "SIGNIN_REGISTER_WORKSPACE": "Registreeri oma tööruum"
 }

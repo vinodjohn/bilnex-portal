@@ -19,8 +19,8 @@
   "LANGUAGE_INFO_1": "Choose your preferred system language",
   "LANGUAGE_INFO_2": " for buttons and other displayed text on Bilnex. Please note that invoices can be sent in different languages as well.",
   "SIGNUP_TITLE": "Set up your workspace with your primary email address!",
-  "SIGNUP_EMAIL": "Enter your email address",
-  "SIGNUP_EMAIL_INFO": " Using your work email (if you have one) will make sending invoices and contacting recipients easier.",
+  "EMAIL_INPUT": "Enter your email address",
+  "EMAIL_INPUT_INFO": " Using your work email (if you have one) will make sending invoices and contacting recipients easier.",
   "CONTINUE_BTN": "Continue",
   "SIGNUP_OR": "or",
   "SIGNUP_GOOGLE": "Continue with Google",
@@ -59,5 +59,8 @@
   "PASSWORD_INPUT": "At least 8-digit password",
   "PASSWORD_RULE": "Choose a password that is at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number. You can change your password later if needed.",
   "PASSWORD_TOGGLE_TEXT": "Stay logged in on this trusted device",
-  "CONFIRM_BTN": "Confirm"
+  "CONFIRM_BTN": "Confirm",
+  "SIGNIN_TITLE": "Enter your primary email address to proceed.",
+  "SIGNIN_TROUBLE": "Trouble with login",
+  "SIGNIN_REGISTER_WORKSPACE": "Register your Workspace"
 }
