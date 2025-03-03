@@ -9,7 +9,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {TranslatePipe} from '@ngx-translate/core';
 import {Router, RouterLink} from '@angular/router';
-import {Company} from '../../shared/model/Company';
+import {CompanyDto} from '../../shared/model/CompanyDto';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {StorageService} from '../../shared/service/storage.service';
@@ -136,10 +136,10 @@ export class RegisterCompanyComponent implements OnInit {
     });
   }
 
-  createCompany(): Company {
+  createCompany(): CompanyDto {
     const formValues = this.workspaceForm.value;
 
-    return new Company(
+    return new CompanyDto(
       null,
       formValues.companyName,
       formValues.regCode,
@@ -149,6 +149,7 @@ export class RegisterCompanyComponent implements OnInit {
       formValues.zip,
       formValues.companyCountry,
       formValues.emailConsent === 'yes',
+      true,
       false
     );
   }

@@ -1,7 +1,7 @@
 <div>
   <div class="dashboard-welcome">
-    <h2>Hi, {{ userName }}</h2>
-    <p>Welcome to Bilnex!</p>
+    <h2><span>{{ 'HI' | translate }}</span> {{ userName }}</h2>
+    <p><span>{{ 'WELCOME_BILNEX' | translate }}</span></p>
   </div>
   <router-outlet></router-outlet>
 </div>

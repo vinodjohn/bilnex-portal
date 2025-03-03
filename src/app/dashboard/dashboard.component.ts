@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {StorageService} from '../shared/service/storage.service';
+import {TranslatePipe} from '@ngx-translate/core';
+import {CompanyDto} from '../shared/model/CompanyDto';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    TranslatePipe
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -19,14 +22,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     const user = this.storageService.getPerson();
 
-    if (user && user.email) {
-      this.userName = this.extractNameFromEmail(user.email);
-    }
+    this.userName = user.companyDtoList.find((company: CompanyDto) => company.isDefault)?.name || 'Default Company';
   }
 
-  extractNameFromEmail(email: string): string {
-    if (!email.includes('@')) return 'User';
-    let name = email.split('@')[0];
-    return name.charAt(0).toUpperCase() + name.slice(1);
-  }
 }

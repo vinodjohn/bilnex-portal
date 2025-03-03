@@ -7,20 +7,20 @@
     <button *ngIf="isLoggedIn" [routerLink]="['/dashboard']" class="menu-item"
             mat-button>{{ 'DASHBOARD' | translate }}
     </button>
-    <button *ngIf="isLoggedIn" [routerLink]="['/invoice']" class="menu-item"
+    <button *ngIf="isLoggedIn" class="menu-item"
             mat-button>{{ 'INVOICE' | translate }}
     </button>
-    <button *ngIf="isLoggedIn" [routerLink]="['/customer']" class="menu-item"
+    <button *ngIf="isLoggedIn" class="menu-item"
             mat-button>{{ 'CUSTOMER' | translate }}
     </button>
-    <button *ngIf="isLoggedIn" [routerLink]="['/payment']" class="menu-item"
+    <button *ngIf="isLoggedIn" class="menu-item"
             mat-button>{{ 'PAYMENT' | translate }}
     </button>
-    <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/person']" class="inter" mat-button><span>{{
+    <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
         'USER' |
           translate
       }}</span></button>
-    <button *ngIf="isLoggedIn && isAdmin" [routerLink]="['/company']" class="inter" mat-button><span>{{
+    <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
         'COMPANY' |
           translate
       }}</span></button>

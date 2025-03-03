@@ -65,5 +65,6 @@
   "SIGNIN_REGISTER_WORKSPACE": "Registreeri oma tööruum",
   "CONTINUE_LOGIN_BTN": "Jätka sisselogimist",
   "SIGNUP_USER_EXISTS_BANNER1": "See kasutaja on juba olemas!",
-  "SIGNUP_USER_EXISTS_BANNER2": "Palun kontrollige, kas teie e-posti aadress on õige. Sisselogimiseks sisestage oma parool või kasutage varem valitud sisselogimismeetodit."
+  "SIGNUP_USER_EXISTS_BANNER2": "Palun kontrollige, kas teie e-posti aadress on õige. Sisselogimiseks sisestage oma parool või kasutage varem valitud sisselogimismeetodit.",
+  "WELCOME_BILNEX": "Tere tulemast Bilnexisse!"
 }

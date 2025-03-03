@@ -65,5 +65,6 @@
   "SIGNIN_REGISTER_WORKSPACE": "Register your Workspace",
   "CONTINUE_LOGIN_BTN": "Continue login",
   "SIGNUP_USER_EXISTS_BANNER1": "This user already exists!",
-  "SIGNUP_USER_EXISTS_BANNER2": "Please check that your email address is correct. To log in, enter your password or use a previously chosen login method."
+  "SIGNUP_USER_EXISTS_BANNER2": "Please check that your email address is correct. To log in, enter your password or use a previously chosen login method.",
+  "WELCOME_BILNEX": "Welcome to Bilnex!"
 }

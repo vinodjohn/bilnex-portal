@@ -117,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.isLoggedIn) {
       const person = this.storageService.getPerson();
       this.role = person.role;
-      this.personName = person.fullName;
+      this.personName = this.extractNameFromEmail(person.email);
     } else if (this.router.url.indexOf('/auth') < 0) {
       this.router.navigate(['']);
     }
@@ -150,5 +150,11 @@ export class AppComponent implements OnInit, OnDestroy {
     if (newRoute !== '/') {
       this.renderer.setStyle(this.el.nativeElement.querySelector('.logo'), 'transform', 'scale(0.75)');
     }
+  }
+
+  extractNameFromEmail(email: string): string {
+    if (!email.includes('@')) return 'User';
+    let name = email.split('@')[0];
+    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }
