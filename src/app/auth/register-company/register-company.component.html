@@ -6,7 +6,7 @@
         {{ (isGoogleUser ? 'REGISTER_COMPANY_CONFIRMATION_GOOGLE' : 'REGISTER_COMPANY_CONFIRMATION') | translate }}
       </span>
       <span class="user-confirmation-email">{{ email }}</span>
-      <button class="change-btn"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
+      <button class="change-btn" [routerLink]="['/auth/signup']"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
     </div>
 
     <div class="company-header">
@@ -33,7 +33,7 @@
 
       <mat-form-field appearance="outline" class="full-width custom-input">
         <mat-label><span>{{ 'REGISTER_COMPANY_NAME' | translate }}</span></mat-label>
-        <input (input)="onCompanyNameInput($event)" formControlName="companyName" matInput type="text">
+        <input formControlName="companyName" matInput type="text">
         <mat-error *ngIf="workspaceForm.get('companyName')?.hasError('required')">
           <span>{{ 'REGISTER_COMPANY_NAME_ERROR' | translate }}</span></mat-error>
       </mat-form-field>

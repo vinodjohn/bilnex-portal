@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {NgOtpInputComponent} from 'ng-otp-input';
 import {NgClass} from '@angular/common';
 import {TranslatePipe} from '@ngx-translate/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../shared/service/auth.service';
+import {SignUp} from '../../shared/model/SignUp';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-verify-email',
@@ -22,7 +24,8 @@ export class VerifyEmailComponent implements OnInit {
   isOtpComplete: boolean = false;
   isOtpIncorrect: boolean = false;
   enteredOtp: string = '';
-  email: string = 'example@example.com';
+  email: string = '';
+  errorMessage = '';
 
   otpConfig = {
     length: 6,
@@ -31,10 +34,11 @@ export class VerifyEmailComponent implements OnInit {
     showError: true,
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) {
   }
 
   ngOnInit() {
+    this.email = history.state.email;
     this.startTimer();
   }
 
@@ -45,18 +49,30 @@ export class VerifyEmailComponent implements OnInit {
 
   submitOtp() {
     console.log('Submitting OTP:', this.enteredOtp);
-    this.router.navigate(['/auth/register-company']);
 
-    // this.http.post('/api/verify-otp', {otp: this.enteredOtp}).subscribe(
-    //   (response) => {
-    //     console.log('OTP Verified Successfully:', response);
-    //   },
-    //   (error) => {
-    //     console.error('OTP Verification Failed:', error);
-    //     this.isOtpIncorrect = true;
-    //     setTimeout(() => (this.isOtpIncorrect = false), 1000);
-    //   }
-    // );
+    this.authService.verifyEmail(new SignUp(this.email, this.enteredOtp, "", false, null)).subscribe({
+      next: () => {
+        console.log('OTP Verified Successfully');
+        let signUp = new SignUp(this.email, this.enteredOtp, "", true, null);
+        this.router.navigate(['/auth/register-company'], { state: { signup: signUp } });
+      },
+      error: (err) => {
+        console.error('OTP Verification Failed:', err);
+        this.isOtpIncorrect = true;
+        this.triggerShakeEffect();
+      }
+    });
+  }
+
+  triggerShakeEffect() {
+    const otpContainer = document.querySelector('.otp-container');
+    if (otpContainer) {
+      otpContainer.classList.add('shake-error');
+
+      setTimeout(() => {
+        otpContainer.classList.remove('shake-error');
+      }, 400);
+    }
   }
 
   startTimer() {
@@ -76,6 +92,24 @@ export class VerifyEmailComponent implements OnInit {
   resendOtp() {
     if (this.resendEnabled) {
       console.log('Resending OTP...');
+      this.authService.signUp(new SignUp(this.email, "", "", false, null)).subscribe({
+        next: () => {
+          console.log('New OTP received successfully.');
+        },
+        error: err => {
+          if (err.status === 400) {
+            console.log('OTP not received. Person already exists!');
+          } else {
+            console.log('OTP not received.' + err.error.message);
+            this.errorMessage = "Technical error, PLease try again later!";
+            this.snackBar.open(this.errorMessage, 'Close', {
+              duration: 2000,
+              panelClass: ['snackbar-error']
+            });
+          }
+        }
+      });
+
       this.enteredOtp = '';
       this.isOtpComplete = false;
       this.startTimer();

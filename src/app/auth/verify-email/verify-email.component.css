@@ -43,8 +43,18 @@
   transform: translateX(-50%);
 }
 
-.shake {
+.shake-error {
   animation: shake 0.4s ease-in-out;
+}
+
+.otp-container .ng-otp-input-wrapper input,
+.otp-container .ng-otp-input-wrapper .otp-input {
+  border-color: #9B9F99 !important;
+}
+
+.otp-container.shake-error .ng-otp-input-wrapper input,
+.otp-container.shake-error .ng-otp-input-wrapper .otp-input {
+  border-color: red !important;
 }
 
 @keyframes shake {

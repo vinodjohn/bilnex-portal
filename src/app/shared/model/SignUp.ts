@@ -5,9 +5,9 @@ export class SignUp {
   code: string;
   password: string;
   isVerified: boolean;
-  company: Company;
+  company: Company | null;
 
-  constructor(email: string, code: string, password: string, isVerified: boolean, company: Company) {
+  constructor(email: string, code: string, password: string, isVerified: boolean, company: Company | null) {
     this.email = email;
     this.code = code;
     this.password = password;

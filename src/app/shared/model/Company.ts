@@ -1,16 +1,16 @@
 export class Company {
-  id: number;
+  id: string | null = null;
   name: string;
   regCode: string;
   vatNr: string;
   address: string;
   city: string;
-  zipcode: number;
+  zipcode: string;
   country: string;
   hasSubscribed: boolean;
   isActive: boolean;
 
-  constructor(id: number, name: string, regCode: string, vatNr: string, address: string, city: string, zipcode: number, country: string, hasSubscribed: boolean, isActive: boolean) {
+  constructor(id: string | null, name: string, regCode: string, vatNr: string, address: string, city: string, zipcode: string, country: string, hasSubscribed: boolean, isActive: boolean) {
     this.id = id;
     this.name = name;
     this.regCode = regCode;

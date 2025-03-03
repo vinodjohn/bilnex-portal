@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
+import {httpInterceptorProviders} from '../shared/interceptor/app.interceptor';
 
 @Component({
   selector: 'app-auth',

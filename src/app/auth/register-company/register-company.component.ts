@@ -8,7 +8,11 @@ import {MatInput} from '@angular/material/input';
 import {NgForOf, NgIf} from '@angular/common';
 import {MatRadioButton, MatRadioGroup} from '@angular/material/radio';
 import {TranslatePipe} from '@ngx-translate/core';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {Company} from '../../shared/model/Company';
+import {SignUp} from '../../shared/model/SignUp';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SignupComponent} from '../signup/signup.component';
 
 @Component({
   selector: 'app-register-company',
@@ -26,7 +30,8 @@ import {Router} from '@angular/router';
     MatError,
     FormsModule,
     MatSelectTrigger,
-    TranslatePipe
+    TranslatePipe,
+    RouterLink
   ],
   templateUrl: './register-company.component.html',
   styleUrl: './register-company.component.css',
@@ -36,23 +41,29 @@ export class RegisterCompanyComponent implements OnInit {
   workspaceForm!: FormGroup;
   companySuggestions: any[] = [];
   isLoading = false;
-  email: string = "example@example.com";
+  email: string = "";
   isGoogleUser: boolean = false;
+  signup: SignUp = new SignUp("", "", "", false, null);
 
   countries = [
     {
-      value: 'estonia',
+      value: 'EE',
       name: 'ESTONIA',
       flag: 'assets/images/estonia-flag.svg'
     }
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
+    this.signup = history.state.signup;
+    this.email = this.signup.email;
+
+    console.log(this.signup);
+
     this.workspaceForm = this.fb.group({
-      companyCountry: ['estonia', Validators.required],
+      companyCountry: ['EE', Validators.required],
       companyName: ['', Validators.required],
       regCode: ['', [Validators.required]],
       vatNumber: [''],
@@ -124,11 +135,36 @@ export class RegisterCompanyComponent implements OnInit {
     });
   }
 
+  createCompany(): Company {
+    const formValues = this.workspaceForm.value;
+
+    return new Company(
+      null,
+      formValues.companyName,
+      formValues.regCode,
+      formValues.vatNumber || '',
+      formValues.address,
+      formValues.city,
+      formValues.zip,
+      formValues.companyCountry,
+      formValues.emailConsent === 'yes',
+      false
+    );
+  }
+
   onSubmit() {
-    this.router.navigate(['/auth/setup-password']);
-    // if (this.workspaceForm.invalid) {
-    //   this.workspaceForm.markAllAsTouched();
-    //   return;
-    // }
+    if (this.workspaceForm.valid) {
+      this.signup = new SignUp(this.signup.email, this.signup.code, this.signup.password, this.signup.isVerified, this.createCompany());
+
+      this.router.navigate(['/auth/setup-password'], {state: {signup: this.signup}});
+    } else {
+      this.snackBar.open('Please fix the errors in the form', 'Close', {
+        duration: 2000,
+        panelClass: ['snackbar-error']
+      });
+
+      this.workspaceForm.markAllAsTouched();
+      return;
+    }
   }
 }
