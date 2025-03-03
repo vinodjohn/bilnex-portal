@@ -54,7 +54,7 @@ export class VerifyEmailComponent implements OnInit {
       next: () => {
         console.log('OTP Verified Successfully');
         let signUp = new SignUp(this.email, this.enteredOtp, "", true, null);
-        this.router.navigate(['/auth/register-company'], { state: { signup: signUp } });
+        this.router.navigate(['/auth/register-company'], {state: {signup: signUp}});
       },
       error: (err) => {
         console.error('OTP Verification Failed:', err);

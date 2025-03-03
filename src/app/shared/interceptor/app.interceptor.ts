@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HTTP_INTERCEPTORS,
   HttpErrorResponse,
@@ -7,13 +7,13 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { AuthService } from '../service/auth.service';
-import { StorageService } from '../service/storage.service';
-import { EventData } from '../model/EventData';
-import { EventBusService } from '../service/event-bus.service';
-import { environment } from '../../../environments/environment';
+import {Observable, throwError} from 'rxjs';
+import {catchError, switchMap} from 'rxjs/operators';
+import {AuthService} from '../service/auth.service';
+import {StorageService} from '../service/storage.service';
+import {EventData} from '../model/EventData';
+import {EventBusService} from '../service/event-bus.service';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -23,7 +23,8 @@ export class AppInterceptor implements HttpInterceptor {
     private sessionService: StorageService,
     private authenticationService: AuthService,
     private eventDispatcher: EventBusService
-  ) {}
+  ) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Intercepting request:', request.url);
@@ -77,5 +78,5 @@ export class AppInterceptor implements HttpInterceptor {
 }
 
 export const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+  {provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
 ];

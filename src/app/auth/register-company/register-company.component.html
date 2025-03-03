@@ -6,7 +6,7 @@
         {{ (isGoogleUser ? 'REGISTER_COMPANY_CONFIRMATION_GOOGLE' : 'REGISTER_COMPANY_CONFIRMATION') | translate }}
       </span>
       <span class="user-confirmation-email">{{ email }}</span>
-      <button class="change-btn" [routerLink]="['/auth/signup']"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
+      <button [routerLink]="['/auth/signup']" class="change-btn"><span>{{ 'CHANGE_BTN' | translate }}</span></button>
     </div>
 
     <div class="company-header">

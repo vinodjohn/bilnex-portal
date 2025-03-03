@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  private PERSON_KEY = 'auth-person';
   role = '';
+  private PERSON_KEY = 'auth-person';
 
   constructor() {
   }

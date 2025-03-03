@@ -1,12 +1,12 @@
 <div class="signup-container">
   <h2 class="signup-title"><span>{{ (isEmailAlreadyExists ? 'SIGNIN_TITLE' : 'SIGNUP_TITLE') | translate }}</span></h2>
 
-  <form (ngSubmit)="onSubmit()" class="signup-form" [formGroup]="signUpForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="signup-form">
     <div class="form-field-container">
       <mat-form-field appearance="outline" class="full-width custom-input" color="primary">
         <mat-label><span>{{ 'EMAIL_INPUT' | translate }}</span></mat-label>
-        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" formControlName="email" matInput type="email"
-        [readonly]="isEmailAlreadyExists">
+        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" [readonly]="isEmailAlreadyExists" formControlName="email" matInput
+               type="email">
       </mat-form-field>
 
       <div [class.visible]="showInfoBox" class="info-button-wrapper">
@@ -36,7 +36,7 @@
     <span>{{ 'SIGNUP_GOOGLE' | translate }}</span>
   </button>
 
-  <button [routerLink]="['/auth/signin']" *ngIf="!isEmailAlreadyExists" class="already-account full-width">
+  <button *ngIf="!isEmailAlreadyExists" [routerLink]="['/auth/signin']" class="already-account full-width">
     <span>{{ 'SIGNUP_ALREADY_ACCOUNT' | translate }}</span>
   </button>
 </div>

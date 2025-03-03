@@ -1,6 +1,6 @@
 <div class="layout">
   <div class="logo-container">
-    <img class=logo alt="logo" src="assets/images/logo.svg">
+    <img alt="logo" class=logo src="assets/images/logo.svg">
   </div>
 
   <div *ngIf="isLoggedIn" class="sidebar animated-sidebar">
@@ -40,7 +40,7 @@
                           [selectedLanguage]="selectedLanguage">
       </app-language-modal>
 
-      <button *ngIf="showForSignup" (click)="login()" class="button-primary">{{ 'LOGIN' | translate }}</button>
+      <button (click)="login()" *ngIf="showForSignup" class="button-primary">{{ 'LOGIN' | translate }}</button>
 
       <ng-container *ngIf="isLoggedIn">
         <button [matMenuTriggerFor]="profile" aria-label="profile" mat-icon-button>
