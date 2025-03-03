@@ -52,5 +52,12 @@
   "REGISTER_COMPANY_CONSENT_YES": "Muidugi!",
   "REGISTER_COMPANY_CONSENT_NO": "Praegu mitte, võib-olla hiljem.",
   "REGISTER_COMPANY_TERMS": "Jätkates nõustute meie Põhiteenuste lepingu ja Kasutustingimustega. Lisateavet leiate meie Privaatsuspoliitikast ja Küpsistepoliitikast.",
-  "REGISTER_COMPANY_CREATE_BTN": "Loo töökeskkond"
+  "REGISTER_COMPANY_CREATE_BTN": "Loo töökeskkond",
+  "PASSWORD_TITLE": "Seadista parool",
+  "PASSWORD_CONFIRMATION": "Seadistamine kasutajale",
+  "PASSWORD_SUBTITLE": "Loo parool",
+  "PASSWORD_INPUT": "Vähemalt 8-kohaline parool",
+  "PASSWORD_RULE": "Valige parool, mis on vähemalt 8 tähemärki pikk ja sisaldab vähemalt ühte suurtähte, ühte väiketähte ja ühte numbrit. Vajadusel saate oma parooli hiljem muuta.",
+  "PASSWORD_TOGGLE_TEXT": "Jääge sellesse usaldusväärsesse seadmesse sisse logituks",
+  "CONFIRM_BTN": "Kinnita"
 }

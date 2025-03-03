@@ -52,5 +52,12 @@
   "REGISTER_COMPANY_CONSENT_YES": "Sure!",
   "REGISTER_COMPANY_CONSENT_NO": "Not at this time, maybe later.",
   "REGISTER_COMPANY_TERMS": "By continuing, you agree to our Main Services Agreement and User Terms of Service. Additional disclosures are available in our Privacy Policy and Cookie Policy.",
-  "REGISTER_COMPANY_CREATE_BTN": "Create a Workspace"
+  "REGISTER_COMPANY_CREATE_BTN": "Create a Workspace",
+  "PASSWORD_TITLE": "Set up password",
+  "PASSWORD_CONFIRMATION": "Setting up for the user",
+  "PASSWORD_SUBTITLE": "Create password",
+  "PASSWORD_INPUT": "At least 8-digit password",
+  "PASSWORD_RULE": "Choose a password that is at least 8 characters long and includes at least one uppercase letter, one lowercase letter, and one number. You can change your password later if needed.",
+  "PASSWORD_TOGGLE_TEXT": "Stay logged in on this trusted device",
+  "CONFIRM_BTN": "Confirm"
 }
