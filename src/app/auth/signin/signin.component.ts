@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {MatFormField, MatLabel, MatSuffix} from '@angular/material/form-field';
@@ -25,7 +25,7 @@ import {TranslatePipe} from '@ngx-translate/core';
   styleUrl: './signin.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   passwordVisible = false;
 
@@ -51,5 +51,13 @@ export class SigninComponent {
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  ngOnInit(): void {
+    console.log(history.state.email);
+
+    if (history.state && history.state.email) {
+      this.signInForm.patchValue({ email: history.state.email });
+    }
   }
 }

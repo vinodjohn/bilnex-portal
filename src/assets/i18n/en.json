@@ -62,5 +62,8 @@
   "CONFIRM_BTN": "Confirm",
   "SIGNIN_TITLE": "Enter your primary email address to proceed.",
   "SIGNIN_TROUBLE": "Trouble with login",
-  "SIGNIN_REGISTER_WORKSPACE": "Register your Workspace"
+  "SIGNIN_REGISTER_WORKSPACE": "Register your Workspace",
+  "CONTINUE_LOGIN_BTN": "Continue login",
+  "SIGNUP_USER_EXISTS_BANNER1": "This user already exists!",
+  "SIGNUP_USER_EXISTS_BANNER2": "Please check that your email address is correct. To log in, enter your password or use a previously chosen login method."
 }

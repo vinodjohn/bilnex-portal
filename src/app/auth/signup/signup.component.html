@@ -1,19 +1,27 @@
 <div class="signup-container">
-  <h2 class="signup-title"><span>{{ 'SIGNUP_TITLE' | translate }}</span></h2>
+  <h2 class="signup-title"><span>{{ (isEmailAlreadyExists ? 'SIGNIN_TITLE' : 'SIGNUP_TITLE') | translate }}</span></h2>
 
-  <form (ngSubmit)="onSubmit()" class="signup-form">
+  <form (ngSubmit)="onSubmit()" class="signup-form" [formGroup]="signUpForm">
     <div class="form-field-container">
       <mat-form-field appearance="outline" class="full-width custom-input" color="primary">
         <mat-label><span>{{ 'EMAIL_INPUT' | translate }}</span></mat-label>
-        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" [(ngModel)]="email" matInput
-               name="email" required type="email">
+        <input (blur)="onBlur()" (focus)="onFocus()" (input)="onFocus()" formControlName="email" matInput type="email"
+        [readonly]="isEmailAlreadyExists">
       </mat-form-field>
 
       <div [class.visible]="showInfoBox" class="info-button-wrapper">
-        <div class="email-info"><span>{{ 'EMAIL_INPUT_INFO' | translate }}</span></div>
-        <button [routerLink]="['/auth/verify-email']" class="button-primary full-width fade-in"
-                type="submit">
-          <span>{{ 'CONTINUE_BTN' | translate }}</span>
+        <div *ngIf="!isEmailAlreadyExists" class="email-info"><span>{{ 'EMAIL_INPUT_INFO' | translate }}</span></div>
+
+        <div *ngIf="isEmailAlreadyExists" class="alert-box">
+          <span class="alert-icon"></span>
+          <div class="alert-content">
+            <strong><span>{{ 'SIGNUP_USER_EXISTS_BANNER1' | translate }}</span></strong>
+            <span>{{ 'SIGNUP_USER_EXISTS_BANNER2' | translate }}</span>
+          </div>
+        </div>
+
+        <button class="button-primary full-width fade-in" type="submit">
+          <span>{{ (isEmailAlreadyExists ? 'CONTINUE_LOGIN_BTN' : 'CONTINUE_BTN') | translate }}</span>
         </button>
       </div>
     </div>
@@ -28,7 +36,7 @@
     <span>{{ 'SIGNUP_GOOGLE' | translate }}</span>
   </button>
 
-  <button  [routerLink]="['/auth/signin']" class="already-account full-width">
+  <button [routerLink]="['/auth/signin']" *ngIf="!isEmailAlreadyExists" class="already-account full-width">
     <span>{{ 'SIGNUP_ALREADY_ACCOUNT' | translate }}</span>
   </button>
 </div>

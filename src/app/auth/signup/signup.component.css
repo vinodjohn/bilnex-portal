@@ -178,6 +178,43 @@
 }
 
 .already-account:hover {
-  background-color: #F4FCF5;
+  background-color: #F9FBF7;
   color: #2e7d32;
+}
+
+.alert-box {
+  display: flex;
+  align-items: flex-start;
+  background-color: #F3FFCB;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #5C6058;
+  font-family: 'Geist', sans-serif;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.alert-icon {
+  width: 18px;
+  height: 18px;
+  background-image: url('/assets/images/alert-icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 8px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.alert-content {
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.alert-content strong {
+  font-weight: bold;
+  color: black;
+  margin-right: 8px;
 }
