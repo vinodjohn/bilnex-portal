@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   development: false,
   environmentName: 'PROD',
-  baseURL: 'http://localhost:8080/',
+  baseURL: 'https://3.71.42.193:8080/',
   itemsPerPage: 10,
   firebaseConfig: {
     apiKey: "AIzaSyC7aNvop7lW8HtvKEbKaHBp0Yh0zhSfZkw",
