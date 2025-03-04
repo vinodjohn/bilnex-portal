@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {debounceTime, Observable, of, switchMap} from 'rxjs';
 import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatOption, MatSelect, MatSelectTrigger} from '@angular/material/select';
 import {MatInput} from '@angular/material/input';
@@ -77,14 +76,15 @@ export class RegisterCompanyComponent implements OnInit {
       emailConsent: ['', Validators.required],
     });
 
-    this.workspaceForm.get('companyName')?.valueChanges
-      .pipe(
-        debounceTime(500),
-        switchMap((name) => this.fetchCompanyDetails(name))
-      )
-      .subscribe((results) => {
-        this.companySuggestions = results || [];
-      });
+    // TODO: Get company from API
+    // this.workspaceForm.get('companyName')?.valueChanges
+    //   .pipe(
+    //     debounceTime(500),
+    //     switchMap((name) => this.fetchCompanyDetails(name))
+    //   )
+    //   .subscribe((results) => {
+    //     this.companySuggestions = results || [];
+    //   });
   }
 
   getSelectedFlag(): string {
@@ -103,17 +103,18 @@ export class RegisterCompanyComponent implements OnInit {
     return selected ? selected.name : '';
   }
 
-  fetchCompanyDetails(name: string): Observable<any[]> {
-    if (!name.trim()) return of([]);
-    this.isLoading = true;
-    return this.http.get<any[]>(`https://localhost:8080/search?query=${name}`).pipe(
-      debounceTime(300),
-      switchMap((data) => {
-        this.isLoading = false;
-        return of(data);
-      })
-    );
-  }
+  // TODO: Get company from API
+  // fetchCompanyDetails(name: string): Observable<any[]> {
+  //   if (!name.trim()) return of([]);
+  //   this.isLoading = true;
+  //   return this.http.get<any[]>(`https://localhost:8080/search?query=${name}`).pipe(
+  //     debounceTime(300),
+  //     switchMap((data) => {
+  //       this.isLoading = false;
+  //       return of(data);
+  //     })
+  //   );
+  // }
 
   selectCompany(company: any) {
     this.workspaceForm.patchValue({
@@ -128,16 +129,17 @@ export class RegisterCompanyComponent implements OnInit {
     this.companySuggestions = [];
   }
 
-  onCompanyNameInput(event: any) {
-    const input = event.target.value;
-    if (input.length < 2) {
-      this.companySuggestions = [];
-      return;
-    }
-    this.fetchCompanyDetails(input).subscribe((results) => {
-      this.companySuggestions = results || [];
-    });
-  }
+  // TODO: Get company from API
+  // onCompanyNameInput(event: any) {
+  //   const input = event.target.value;
+  //   if (input.length < 2) {
+  //     this.companySuggestions = [];
+  //     return;
+  //   }
+  //   this.fetchCompanyDetails(input).subscribe((results) => {
+  //     this.companySuggestions = results || [];
+  //   });
+  // }
 
   createCompany(): CompanyDto {
     const formValues = this.workspaceForm.value;

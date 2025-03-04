@@ -38,11 +38,12 @@
           <span>{{ 'REGISTER_COMPANY_NAME_ERROR' | translate }}</span></mat-error>
       </mat-form-field>
 
-      <div *ngIf="companySuggestions.length" class="suggestions">
-        <div (click)="selectCompany(company)" *ngFor="let company of companySuggestions" class="suggestion-item">
-          {{ company.name }}
-        </div>
-      </div>
+<!--      TODO: Get company from API-->
+<!--      <div *ngIf="companySuggestions.length" class="suggestions">-->
+<!--        <div (click)="selectCompany(company)" *ngFor="let company of companySuggestions" class="suggestion-item">-->
+<!--          {{ company.name }}-->
+<!--        </div>-->
+<!--      </div>-->
 
       <div class="form-row">
         <mat-form-field appearance="outline" class="half-width custom-input">
