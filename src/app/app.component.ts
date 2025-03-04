@@ -3,38 +3,33 @@ import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButton, MatButtonModule, MatIconButton} from '@angular/material/button';
-import {MatIcon, MatIconModule} from '@angular/material/icon';
-import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
-import {NgIf} from '@angular/common';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
-import {LanguageModalComponent} from './language-modal/language-modal.component';
 import {Subscription} from 'rxjs';
 import {EventBusService} from './shared/service/event-bus.service';
 import {StorageService} from './shared/service/storage.service';
 import {AuthService} from './shared/service/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import {NgIf} from '@angular/common';
+import {LanguageModalComponent} from './language-modal/language-modal.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
-    MatIconButton,
-    MatIcon,
-    MatButton,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
-    MatMenuTrigger,
-    MatMenu,
+    TranslatePipe,
     RouterLink,
     NgIf,
-    MatMenuItem,
-    TranslatePipe,
     LanguageModalComponent,
+    RouterOutlet,
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -52,7 +47,8 @@ export class AppComponent implements OnInit, OnDestroy {
   routerSubscription: Subscription | null = null;
 
   constructor(private router: Router, private eventBusService: EventBusService, private storageService: StorageService,
-              private authService: AuthService, private snackBar: MatSnackBar, private el: ElementRef, private renderer: Renderer2) {
+              private authService: AuthService, private snackBar: MatSnackBar, private el: ElementRef, private renderer: Renderer2,
+              private afAuth: AngularFireAuth) {
     this.translate.setDefaultLang(this.selectedLanguage);
     this.translate.use(this.selectedLanguage);
   }
@@ -98,7 +94,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log('Route changed to:', event.url);
         this.onRouteChange(event.url);
         this.onComponentLoad();
       }
@@ -111,8 +106,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   onComponentLoad() {
     this.isLoggedIn = this.storageService.isLoggedIn();
-    console.log(this.router.url);
-    console.log(this.router.url.indexOf('/auth/signup'));
 
     if (this.isLoggedIn) {
       const person = this.storageService.getPerson();
@@ -128,6 +121,10 @@ export class AppComponent implements OnInit, OnDestroy {
       next: () => {
         this.storageService.clean();
 
+        this.afAuth.signOut().then(() => {
+          localStorage.removeItem('token');
+        });
+
         this.router.navigate(['']).then(() => {
           window.location.reload();
         });
@@ -141,15 +138,15 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  private onRouteChange(newRoute: string) {
-    if (newRoute !== '/') {
-      this.renderer.setStyle(this.el.nativeElement.querySelector('.logo'), 'transform', 'scale(0.75)');
-    }
-  }
-
   extractNameFromEmail(email: string): string {
     if (!email.includes('@')) return 'User';
     let name = email.split('@')[0];
     return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  private onRouteChange(newRoute: string) {
+    if (newRoute !== '/') {
+      this.renderer.setStyle(this.el.nativeElement.querySelector('.logo'), 'transform', 'scale(0.75)');
+    }
   }
 }

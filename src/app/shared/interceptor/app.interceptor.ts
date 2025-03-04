@@ -27,8 +27,6 @@ export class AppInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Intercepting request:', request.url);
-
     if (request.url.includes('/assets/i18n/') || request.url.includes('/assets/')) {
       return next.handle(request);
     }

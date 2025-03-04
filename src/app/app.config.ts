@@ -6,6 +6,9 @@ import {HttpClient, provideHttpClient, withInterceptorsFromDi} from '@angular/co
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 import {httpInterceptorProviders} from './shared/interceptor/app.interceptor';
+import {AngularFireModule} from '@angular/fire/compat';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,7 +28,9 @@ export const appConfig: ApplicationConfig = {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient]
         }
-      })
+      }),
+      AngularFireModule.initializeApp(environment.firebaseConfig),
+      AngularFireAuthModule
     ),
     httpInterceptorProviders
   ]

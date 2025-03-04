@@ -102,4 +102,8 @@ export class SignupComponent implements AfterViewInit {
       this.router.navigate(['/dashboard']);
     }
   }
+
+  loginWithGoogle() {
+    this.authService.googleLogin();
+  }
 }

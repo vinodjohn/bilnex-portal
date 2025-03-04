@@ -100,4 +100,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/dashboard']);
     }
   }
+
+  loginWithGoogle() {
+    this.authService.googleLogin();
+  }
 }

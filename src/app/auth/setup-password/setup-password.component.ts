@@ -66,7 +66,6 @@ export class SetupPasswordComponent implements OnInit {
             duration: 5000,
             panelClass: ['snackbar-']
           });
-
           this.router.navigate(['/auth/signin']);
         },
         error: err => {

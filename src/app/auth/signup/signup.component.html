@@ -32,7 +32,7 @@
     <span class="line"></span> <span>{{ 'SIGNUP_OR' | translate }}</span> <span class="line"></span>
   </div>
 
-  <button class="google-button full-width">
+  <button (click)="loginWithGoogle()" class="google-button full-width">
     <img alt="Google Icon" src="assets/images/google-icon.png">
     <span>{{ 'SIGNUP_GOOGLE' | translate }}</span>
   </button>

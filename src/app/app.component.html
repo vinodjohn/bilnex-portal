@@ -1,74 +1,58 @@
 <div class="layout">
-  <div class="logo-container">
-    <img alt="logo" class=logo src="assets/images/logo.svg">
-  </div>
+    <div class="logo-container">
+        <img alt="logo" class=logo src="assets/images/logo.svg">
+    </div>
 
-  <div *ngIf="isLoggedIn" class="floating-menu">
-    <button *ngIf="isLoggedIn" [routerLink]="['/dashboard']" class="menu-item"
-            mat-button>{{ 'DASHBOARD' | translate }}
-    </button>
-    <button *ngIf="isLoggedIn" class="menu-item"
-            mat-button>{{ 'INVOICE' | translate }}
-    </button>
-    <button *ngIf="isLoggedIn" class="menu-item"
-            mat-button>{{ 'CUSTOMER' | translate }}
-    </button>
-    <button *ngIf="isLoggedIn" class="menu-item"
-            mat-button>{{ 'PAYMENT' | translate }}
-    </button>
-    <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
-        'USER' |
-          translate
-      }}</span></button>
-    <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
-        'COMPANY' |
-          translate
-      }}</span></button>
-  </div>
-
-  <div class="content-area">
-    <div class="profile-menu-container">
-      <button (click)="openLanguageModal()" aria-label="Select Language" class="language-button">
-        <img alt="Language" src="assets/images/globe.svg"/>
-      </button>
-      <app-language-modal (closeModal)="closeModal()"
-                          (languageChange)="changeLanguage($event)"
-                          *ngIf="isModalOpen"
-                          [selectedLanguage]="selectedLanguage">
-      </app-language-modal>
-
-      <button (click)="login()" *ngIf="showForSignup" class="button-primary">{{ 'LOGIN' | translate }}</button>
-
-      <ng-container *ngIf="isLoggedIn">
-        <button [matMenuTriggerFor]="profile" aria-label="profile" mat-icon-button>
-          <mat-icon>person</mat-icon>
+    <div *ngIf="isLoggedIn" class="floating-menu">
+        <button *ngIf="isLoggedIn" [routerLink]="['/dashboard']" class="menu-item"
+                mat-button>{{ 'DASHBOARD' | translate }}
         </button>
-        <mat-menu #profile="matMenu">
-          <button disabled mat-menu-item>
-            <span><span>{{ 'HI' | translate }}</span> {{ personName }}</span>
-          </button>
-          <button [routerLink]="['/change-password']" mat-menu-item>
-            <mat-icon>key</mat-icon>
-            <span>{{ 'CHANGE_PASSWORD' | translate }}</span>
-          </button>
-          <button (click)="signOut()" mat-menu-item>
-            <mat-icon>exit_to_app</mat-icon>
-            <span>{{ 'LOGOUT' | translate }}</span>
-          </button>
-        </mat-menu>
-      </ng-container>
+        <button *ngIf="isLoggedIn" class="menu-item"
+                mat-button>{{ 'INVOICE' | translate }}
+        </button>
+        <button *ngIf="isLoggedIn" class="menu-item"
+                mat-button>{{ 'CUSTOMER' | translate }}
+        </button>
+        <button *ngIf="isLoggedIn" class="menu-item"
+                mat-button>{{ 'PAYMENT' | translate }}
+        </button>
+        <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
+                'USER' |
+                    translate
+            }}</span></button>
+        <button *ngIf="isLoggedIn && isAdmin" class="inter" mat-button><span>{{
+                'COMPANY' |
+                    translate
+            }}</span></button>
     </div>
 
-    <div *ngIf="showForSignup" class="banner">
-      <h1 class="banner-title animated-text">{{ 'BANNER_TITLE' | translate }}</h1>
-      <p class="banner-subtitle animated-text">{{ 'BANNER_SUBTITLE' | translate }}</p>
-      <button (click)="getStarted()" class="get-started-btn">
-        {{ 'GET_STARTED' | translate }}
-      </button>
-    </div>
+    <div class="content-area">
+        <div class="profile-menu-container">
+            <button (click)="openLanguageModal()" aria-label="Select Language" class="language-button">
+                <img alt="Language" src="assets/images/globe.svg"/>
+            </button>
+            <app-language-modal (closeModal)="closeModal()"
+                                (languageChange)="changeLanguage($event)"
+                                *ngIf="isModalOpen"
+                                [selectedLanguage]="selectedLanguage">
+            </app-language-modal>
 
-    <div *ngIf="!showForSignup" class="main-content">
-      <router-outlet></router-outlet>
+            <button (click)="login()" *ngIf="showForSignup" class="button-primary">{{ 'LOGIN' | translate }}</button>
+            <button (click)="signOut()" *ngIf="isLoggedIn" class="button-primary">
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+
+        <div *ngIf="showForSignup" class="banner">
+            <h1 class="banner-title animated-text">{{ 'BANNER_TITLE' | translate }}</h1>
+            <p class="banner-subtitle animated-text">{{ 'BANNER_SUBTITLE' | translate }}</p>
+            <button (click)="getStarted()" class="get-started-btn">
+                {{ 'GET_STARTED' | translate }}
+            </button>
+        </div>
+
+        <div *ngIf="!showForSignup" class="main-content">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-  </div>
 </div>

@@ -41,9 +41,6 @@ export class VerifyEmailComponent implements OnInit {
 
   ngOnInit() {
     this.email = this.storageService.getSignUp().email;
-
-    console.log(this.email);
-
     this.startTimer();
   }
 
@@ -53,11 +50,8 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   submitOtp() {
-    console.log('Submitting OTP:', this.enteredOtp);
-
     this.authService.verifyEmail(new SignUp(this.email, this.enteredOtp, "", false, null)).subscribe({
       next: () => {
-        console.log('OTP Verified Successfully');
         let signUp = new SignUp(this.email, this.enteredOtp, "", true, null);
         this.storageService.saveSignUp(signUp);
 
@@ -98,10 +92,8 @@ export class VerifyEmailComponent implements OnInit {
 
   resendOtp() {
     if (this.resendEnabled) {
-      console.log('Resending OTP...');
       this.authService.signUp(new SignUp(this.email, "", "", false, null)).subscribe({
         next: () => {
-          console.log('New OTP received successfully.');
         },
         error: err => {
           if (err.status === 400) {

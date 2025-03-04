@@ -13,6 +13,8 @@ import {CompanyDto} from '../../shared/model/CompanyDto';
 import {SignUp} from '../../shared/model/SignUp';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {StorageService} from '../../shared/service/storage.service';
+import {AuthService} from '../../shared/service/auth.service';
+import {SignIn} from '../../shared/model/SignIn';
 
 @Component({
   selector: 'app-register-company',
@@ -44,6 +46,8 @@ export class RegisterCompanyComponent implements OnInit {
   email: string = "";
   isGoogleUser: boolean = false;
   signup: SignUp = new SignUp("", "", "", false, null);
+  loading = false;
+  errorMessage = '';
 
   countries = [
     {
@@ -54,14 +58,13 @@ export class RegisterCompanyComponent implements OnInit {
   ];
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private snackBar: MatSnackBar,
-              private storageService: StorageService) {
+              private storageService: StorageService, private authService: AuthService) {
   }
 
   ngOnInit() {
     this.signup = this.storageService.getSignUp();
     this.email = this.signup.email;
-
-    console.log(this.signup);
+    this.isGoogleUser = this.signup.code === "0";
 
     this.workspaceForm = this.fb.group({
       companyCountry: ['EE', Validators.required],
@@ -159,7 +162,46 @@ export class RegisterCompanyComponent implements OnInit {
       this.signup = new SignUp(this.signup.email, this.signup.code, this.signup.password, this.signup.isVerified, this.createCompany());
       this.storageService.saveSignUp(this.signup);
 
-      this.router.navigate(['/auth/setup-password'], {state: {signup: this.signup}});
+      if (this.isGoogleUser) {
+        this.authService.signUpConfirm(this.signup).subscribe({
+          next: () => {
+            this.loading = false;
+
+            this.snackBar.open("Congratulations! Workspace created successfully.", 'Close', {
+              duration: 5000,
+              panelClass: ['snackbar-']
+            });
+
+            this.authService.signIn(new SignIn(this.signup.email, "!")).subscribe({
+              next: data => {
+                this.storageService.savePerson(data);
+                this.loading = false;
+                this.router.navigate(['/dashboard']);
+              },
+              error: err => {
+                this.errorMessage = err.error.message;
+                this.loading = false;
+
+                this.snackBar.open(this.errorMessage.concat(" ").concat(err.error.details.map((x: any) => x).join(",")), 'Close', {
+                  duration: 2000,
+                  panelClass: ['snackbar-error']
+                });
+              }
+            });
+          },
+          error: err => {
+            this.errorMessage = err.error.message;
+            this.loading = false;
+
+            this.snackBar.open(this.errorMessage, 'Close', {
+              duration: 2000,
+              panelClass: ['snackbar-error']
+            });
+          }
+        });
+      } else {
+        this.router.navigate(['/auth/setup-password'], {state: {signup: this.signup}});
+      }
     } else {
       this.snackBar.open('Please fix the errors in the form', 'Close', {
         duration: 2000,
